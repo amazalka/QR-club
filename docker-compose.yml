@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: qrclub_postgres
+    environment:docker ps
+      POSTGRES_DB: qrclub
+      POSTGRES_USER: qruser
+      POSTGRES_PASSWORD: qrpass
+    ports:
+      - "5432:5432"
