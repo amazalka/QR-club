@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: Java3QRclub
+  datasource:
+    url: jdbc:postgresql://localhost:5432/qrclub
+    username: qruser
+    password: qrpass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true

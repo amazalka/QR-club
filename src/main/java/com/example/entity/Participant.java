@@ -1,9 +1,7 @@
-package com.example.Java3_qrclub.entity;
+package com.example.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.UUID;
 
 @Data
 @Entity
@@ -13,8 +11,6 @@ public class Participant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "uuid")
-    private UUID uuid;
     @Column(name = "first_name")
     private String name;
     @Column(name = "last_name")
