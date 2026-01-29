@@ -2,6 +2,7 @@ package com.example.repository;
 
 import com.example.entity.Participant;
 import com.example.entity.QRCode;
+import com.example.exception.QRcodeNotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -20,7 +21,7 @@ public class QRRepository {
                 .findFirst()
                 .orElse(null);
         if (qrCode == null) {
-            return null;
+            throw new QRcodeNotFoundException("QR-код не найден");
         }
         qrCode.setUuid(UUID.randomUUID());
         entityManager.merge(qrCode);
