@@ -1,6 +1,5 @@
 package com.example.mapper;
 
-
 import com.example.dto.ParticipantResponse;
 import com.example.entity.ParticipantEntity;
 import org.mapstruct.Mapper;
