@@ -1,6 +1,8 @@
 package com.example.service;
 
-import com.example.entity.Participant;
+import com.example.mapper.ParticipantMapper;
+import com.example.dto.ParticipantResponse;
+import com.example.entity.ParticipantEntity;
 import com.example.repository.QRRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -11,13 +13,16 @@ import java.util.UUID;
 @Transactional
 public class QRServiceImpl implements QRService {
     private QRRepository qrRepository;
+    private ParticipantMapper participantMapper;
 
-    public QRServiceImpl(QRRepository qrRepository) {
+    public QRServiceImpl(QRRepository qrRepository, ParticipantMapper participantMapper) {
         this.qrRepository = qrRepository;
+        this.participantMapper = participantMapper;
     }
 
     @Override
-    public Participant checkQR(UUID uuid) {
-        return qrRepository.checkQR(uuid);
+    public ParticipantResponse checkQR(UUID uuid) {
+        ParticipantEntity participantEntity = qrRepository.checkQR(uuid);
+        return participantMapper.toDTO(participantEntity);
     }
 }

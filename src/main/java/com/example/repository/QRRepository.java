@@ -1,7 +1,7 @@
 package com.example.repository;
 
-import com.example.entity.Participant;
-import com.example.entity.QRCode;
+import com.example.entity.ParticipantEntity;
+import com.example.entity.QRCodeEntity;
 import com.example.exception.QRcodeNotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -14,18 +14,18 @@ public class QRRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public Participant checkQR(UUID uuid) {
-        QRCode qrCode = entityManager.createQuery("SELECT q FROM QRCode q WHERE q.uuid = :uuid", QRCode.class)
+    public ParticipantEntity checkQR(UUID uuid) {
+        QRCodeEntity qrCodeEntity = entityManager.createQuery("SELECT q FROM QRCodeEntity q WHERE q.uuid = :uuid", QRCodeEntity.class)
                 .setParameter("uuid", uuid)
                 .getResultStream()
                 .findFirst()
                 .orElse(null);
-        if (qrCode == null) {
+        if (qrCodeEntity == null) {
             throw new QRcodeNotFoundException("QR-код не найден");
         }
-        qrCode.setUuid(UUID.randomUUID());
-        entityManager.merge(qrCode);
-        System.out.println("Новый UUID: " + qrCode.getUuid());
-        return qrCode.getParticipant();
+        qrCodeEntity.setUuid(UUID.randomUUID());
+        entityManager.merge(qrCodeEntity);
+        System.out.println("Новый UUID: " + qrCodeEntity.getUuid());
+        return qrCodeEntity.getParticipantEntity();
     }
 }

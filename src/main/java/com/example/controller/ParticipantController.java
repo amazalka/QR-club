@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.entity.Participant;
+import com.example.dto.ParticipantResponse;
 import com.example.service.ParticipantService;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,20 +14,18 @@ public class ParticipantController {
     }
 
     @PostMapping("/")
-    public Participant addParticipant(@RequestBody Participant participant) {
-        participantService.addParticipant(participant);
-        return participant;
+    public ParticipantResponse addParticipant(@RequestBody ParticipantResponse participant) {
+        return participantService.addParticipant(participant);
     }
 
     @PutMapping("/")
-    public Participant updateParticipant(@RequestBody Participant participant) {
-        participantService.updateParticipant(participant);
-        return participant;
+    public ParticipantResponse updateParticipant(@RequestBody ParticipantResponse participant) {
+        return participantService.updateParticipant(participant);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteParticipant(@PathVariable Long id) {
+    public Long deleteParticipant(@PathVariable Long id) {
         participantService.deleteParticipant(id);
-        return "Клиент удален";
+        return id;
     }
 }

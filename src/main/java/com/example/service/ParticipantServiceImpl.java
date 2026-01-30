@@ -1,6 +1,8 @@
 package com.example.service;
 
-import com.example.entity.Participant;
+import com.example.mapper.ParticipantMapper;
+import com.example.dto.ParticipantResponse;
+import com.example.entity.ParticipantEntity;
 import com.example.repository.ParticipantRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -10,9 +12,11 @@ import org.springframework.stereotype.Service;
 public class ParticipantServiceImpl implements ParticipantService {
 
     private ParticipantRepository participantRepository;
+    private ParticipantMapper participantMapper;
 
-    public ParticipantServiceImpl(ParticipantRepository participantRepository) {
+    public ParticipantServiceImpl(ParticipantRepository participantRepository, ParticipantMapper participantMapper) {
         this.participantRepository = participantRepository;
+        this.participantMapper = participantMapper;
     }
 
     @Override
@@ -21,12 +25,16 @@ public class ParticipantServiceImpl implements ParticipantService {
     }
 
     @Override
-    public void addParticipant(Participant participant) {
-        participantRepository.addParticipant(participant);
+    public ParticipantResponse addParticipant(ParticipantResponse participant) {
+        ParticipantEntity participantEntity = participantMapper.toEntity(participant);
+        participantRepository.addParticipant(participantEntity);
+        return participantMapper.toDTO(participantEntity);
     }
 
     @Override
-    public void updateParticipant(Participant participant) {
-        participantRepository.updateParticipant(participant);
+    public ParticipantResponse updateParticipant(ParticipantResponse participant) {
+        ParticipantEntity participantEntity = participantMapper.toEntity(participant);
+        participantRepository.updateParticipant(participantEntity);
+        return participantMapper.toDTO(participantEntity);
     }
 }

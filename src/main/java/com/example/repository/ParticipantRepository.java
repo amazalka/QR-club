@@ -1,6 +1,6 @@
 package com.example.repository;
 
-import com.example.entity.Participant;
+import com.example.entity.ParticipantEntity;
 import com.example.exception.ParticipantNotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -12,18 +12,18 @@ public class ParticipantRepository {
     private EntityManager entityManager;
 
     public void deleteParticipant(Long id) {
-        Participant participant = entityManager.find(Participant.class, id);
-        if (participant == null) {
+        ParticipantEntity participantEntity = entityManager.find(ParticipantEntity.class, id);
+        if (participantEntity == null) {
             throw new ParticipantNotFoundException("Participant не найден");
         }
-        entityManager.remove(participant);
+        entityManager.remove(participantEntity);
     }
 
-    public void addParticipant(Participant participant) {
-        entityManager.persist(participant);
+    public void addParticipant(ParticipantEntity participantEntity) {
+        entityManager.persist(participantEntity);
     }
 
-    public void updateParticipant(Participant participant) {
-        entityManager.merge(participant);
+    public void updateParticipant(ParticipantEntity participantEntity) {
+        entityManager.merge(participantEntity);
     }
 }

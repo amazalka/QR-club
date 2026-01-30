@@ -8,7 +8,7 @@ import java.util.UUID;
 @Data
 @Entity
 @Table(name = "qrcodes")
-public class QRCode {
+public class QRCodeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -17,5 +17,5 @@ public class QRCode {
     private UUID uuid;
     @OneToOne
     @JoinColumn(name = "id_participant")
-    private Participant Participant;
+    private ParticipantEntity participantEntity;
 }

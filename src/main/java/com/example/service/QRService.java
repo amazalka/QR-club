@@ -1,9 +1,10 @@
 package com.example.service;
 
-import com.example.entity.Participant;
+import com.example.dto.ParticipantResponse;
+import com.example.entity.ParticipantEntity;
 
 import java.util.UUID;
 
 public interface QRService {
-    Participant checkQR(UUID uuid);
+    ParticipantResponse checkQR(UUID uuid);
 }
