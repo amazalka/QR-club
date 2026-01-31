@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.dto.ParticipantRequest;
 import com.example.dto.ParticipantResponse;
 import com.example.service.ParticipantService;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +15,13 @@ public class ParticipantController {
     }
 
     @PostMapping("/")
-    public ParticipantResponse addParticipant(@RequestBody ParticipantResponse participant) {
+    public ParticipantResponse addParticipant(@RequestBody ParticipantRequest participant) {
         return participantService.addParticipant(participant);
     }
 
-    @PutMapping("/")
-    public ParticipantResponse updateParticipant(@RequestBody ParticipantResponse participant) {
+    @PutMapping("/{id}")
+    public ParticipantResponse updateParticipant(@PathVariable Long id, @RequestBody ParticipantRequest participant) {
+        participant.setId(id);
         return participantService.updateParticipant(participant);
     }
 

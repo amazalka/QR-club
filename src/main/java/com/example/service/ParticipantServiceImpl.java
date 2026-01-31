@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.dto.ParticipantRequest;
 import com.example.mapper.ParticipantMapper;
 import com.example.dto.ParticipantResponse;
 import com.example.entity.ParticipantEntity;
@@ -25,16 +26,16 @@ public class ParticipantServiceImpl implements ParticipantService {
     }
 
     @Override
-    public ParticipantResponse addParticipant(ParticipantResponse participant) {
+    public ParticipantResponse addParticipant(ParticipantRequest participant) {
         ParticipantEntity participantEntity = participantMapper.toEntity(participant);
         participantRepository.addParticipant(participantEntity);
-        return participantMapper.toDTO(participantEntity);
+        return participantMapper.toResponse(participantEntity);
     }
 
     @Override
-    public ParticipantResponse updateParticipant(ParticipantResponse participant) {
+    public ParticipantResponse updateParticipant(ParticipantRequest participant) {
         ParticipantEntity participantEntity = participantMapper.toEntity(participant);
         participantRepository.updateParticipant(participantEntity);
-        return participantMapper.toDTO(participantEntity);
+        return participantMapper.toResponse(participantEntity);
     }
 }

@@ -23,6 +23,6 @@ public class QRServiceImpl implements QRService {
     @Override
     public ParticipantResponse checkQR(UUID uuid) {
         ParticipantEntity participantEntity = qrRepository.checkQR(uuid);
-        return participantMapper.toDTO(participantEntity);
+        return participantMapper.toResponse(participantEntity);
     }
 }
