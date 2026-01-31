@@ -14,6 +14,10 @@ public class QRRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
+    public void addQRCode(QRCodeEntity qrCode){
+        entityManager.persist(qrCode);
+    }
+
     public ParticipantEntity checkQR(UUID uuid) {
         QRCodeEntity qrCodeEntity = entityManager.createQuery("SELECT q FROM QRCodeEntity q WHERE q.uuid = :uuid", QRCodeEntity.class)
                 .setParameter("uuid", uuid)

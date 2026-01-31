@@ -13,7 +13,7 @@ public class QRCodeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "uuid")
+    @Column(name = "uuid", nullable = false, unique = true)
     private UUID uuid;
     @OneToOne
     @JoinColumn(name = "id_participant")
